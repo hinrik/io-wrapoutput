@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.02  Wed May 25 06:16:28 GMT 2011
     - Load IO::Handle so we can call ->autoflush(1) on older Perls
 
 0.01  Mon May 23 05:47:55 GMT 2011
