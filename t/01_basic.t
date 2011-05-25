@@ -8,14 +8,19 @@ open my $orig_stderr, '>&', STDERR or BAIL_OUT("Can't dup STDERR: $!");
 
 $SIG{ALRM} = sub { die "Timed out\n" };
 alarm 5;
-my ($new_stdout, $new_stderr) = wrap_output();
+
+my ($new_stdout, $new_stderr) = eval { wrap_output() };
+chomp $@;
+fail("wrap_output() failed: $@") if $@;
 
 print "Test out\n";
 warn "Test err\n";
 my $new_out = readline($new_stdout);
 my $new_err = readline($new_stderr);
 
-unwrap_output();
+eval { unwrap_output() };
+chomp $@;
+fail("unwrap_output() failed $@") if $@;
 alarm 0;
 
 is($new_out, "Test out\n", 'Got piped STDOUT');

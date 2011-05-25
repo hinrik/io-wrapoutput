@@ -3,6 +3,7 @@ package IO::WrapOutput;
 use strict;
 use warnings FATAL => 'all';
 use Carp 'croak';
+use IO::Handle;
 use Symbol 'gensym';
 use base 'Exporter';
 
