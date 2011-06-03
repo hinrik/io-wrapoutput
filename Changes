@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.03  Fri Jun 3 04:00:57 GMT 2011
     - Skip POE test when there's no Term::Cap or Term::ReadKey
 
 0.02  Wed May 25 06:16:28 GMT 2011
