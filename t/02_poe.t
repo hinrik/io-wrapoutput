@@ -5,8 +5,12 @@ use warnings FATAL => 'all';
 use Test::More;
 
 BEGIN {
-    eval { require POE };
-    plan skip_all => 'POE is required for this test' if $@;
+    eval q<
+        use POE;
+        use Term::Cap 1.10;
+        use Term::ReadKey 2.21;
+    >;
+    plan skip_all => 'POE, Term::Cap, and Term::ReadKey required' if $@;
 }
 
 use IO::WrapOutput;

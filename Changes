@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - Skip POE test when there's no Term::Cap or Term::ReadKey
 
 0.02  Wed May 25 06:16:28 GMT 2011
     - Load IO::Handle so we can call ->autoflush(1) on older Perls
