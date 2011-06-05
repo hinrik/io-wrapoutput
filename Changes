@@ -2,6 +2,7 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
     - Fix Perl 5.6 compatibility
+    - Make the POE test a TODO test due to Term::ReadKey issue (#56486)
 
 0.03  Fri Jun 3 04:00:57 GMT 2011
     - Skip POE test when there's no Term::Cap or Term::ReadKey

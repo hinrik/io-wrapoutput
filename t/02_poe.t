@@ -63,7 +63,12 @@ sub got_child_output {
 
 sub got_child_signal {
     my ($kernel, $heap) = @_[KERNEL, HEAP];
-    ok($heap->{got_foo}, "Got output from child before it died");
+
+    TODO: {
+        local $TODO = "A Term::ReadKey issue (#56486) might derail this test";
+        ok($heap->{got_foo}, "Got output from child before it died");
+    };
+
     delete $heap->{child};
     delete $heap->{got_foo};
     $heap->{children_done}++;
