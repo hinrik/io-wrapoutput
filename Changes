@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.04  Sun Jun 5 22:28:05 GMT 2011
     - Fix Perl 5.6 compatibility
     - Make the POE test a TODO test due to Term::ReadKey issue (#56486)
 
