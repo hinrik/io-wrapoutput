@@ -14,8 +14,8 @@ our %EXPORT_TAGS = (ALL => [@EXPORT]);
 my ($orig_stderr, $orig_stdout);
 
 sub wrap_output {
-    open $orig_stdout, '>&', STDOUT or croak("Can't dup STDOUT: $!");
-    open $orig_stderr, '>&', STDERR or croak("Can't dup STDERR: $!");
+    open $orig_stdout, '>&', *STDOUT or croak("Can't dup STDOUT: $!");
+    open $orig_stderr, '>&', *STDERR or croak("Can't dup STDERR: $!");
 
     my ($read_stdout, $write_stdout) = (gensym(), gensym());
     pipe $read_stdout, $write_stdout;

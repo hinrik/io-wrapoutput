@@ -3,8 +3,8 @@ use warnings FATAL => 'all';
 use Test::More tests => 3;
 BEGIN { use_ok('IO::WrapOutput') }
 
-open my $orig_stdout, '>&', STDOUT or BAIL_OUT("Can't dup STDOUT: $!");
-open my $orig_stderr, '>&', STDERR or BAIL_OUT("Can't dup STDERR: $!");
+open my $orig_stdout, '>&', *STDOUT or BAIL_OUT("Can't dup STDOUT: $!");
+open my $orig_stderr, '>&', *STDERR or BAIL_OUT("Can't dup STDERR: $!");
 
 $SIG{ALRM} = sub { die "Timed out\n" };
 alarm 5;
