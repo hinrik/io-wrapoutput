@@ -122,14 +122,15 @@ IO::WrapOutput - Wrap your output filehandles with minimal fuss
 
 =head1 DESCRIPTION
 
-When you have a module which needs all output to go through a method that it
-provides (e.g. ReadLine), it can be cumbersome (or even impossible) to
-change all the code in your program to do that instead of printing to
-STDOUT/STDERR. That's where C<IO::WrapOutput> comes in.
+When you have a module (e.g. POE::Wheel::ReadLine) which needs all output
+to go through a method that it provides, it can be cumbersome (or even
+impossible) to change all the code in an asynchronous/event-driven program
+to do that instead of printing directly to STDOUT/STDERR. That's
+where C<IO::WrapOutput> comes in.
 
 You just do the setup work for the output-hogging module in question, then
-call C<wrap_output> which will return filehands that you can read from. Then
-you take what you get from those filehandles and feed it into your
+call C<wrap_output> which will return filehandles that you can read from.
+Then you take what you get from those filehandles and feed it into your
 output-hogging module's output method. After you stop using the
 output-hogging module, you can restore your original STDOUT/STDERR handles
 with C<unwrap_output>.
