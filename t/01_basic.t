@@ -3,6 +3,8 @@ use warnings FATAL => 'all';
 use Test::More tests => 3;
 BEGIN { use_ok('IO::WrapOutput') }
 
+# 2-arg open() here because Perl 5.6 doesn't understand the '>&' mode
+# with a 3-arg open
 open my $orig_stdout, '>&'.fileno(STDOUT) or BAIL_OUT("Can't dup STDOUT: $!");
 open my $orig_stderr, '>&'.fileno(STDERR) or BAIL_OUT("Can't dup STDERR: $!");
 

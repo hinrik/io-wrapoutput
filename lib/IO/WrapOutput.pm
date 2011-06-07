@@ -14,6 +14,8 @@ our %EXPORT_TAGS = (ALL => [@EXPORT]);
 my ($orig_stderr, $orig_stdout);
 
 sub wrap_output {
+    # 2-arg open() here because Perl 5.6 doesn't understand the '>&' mode
+    # with a 3-arg open
     open $orig_stdout, '>&'.fileno(STDOUT) or croak("Can't dup STDOUT: $!");
     open $orig_stderr, '>&'.fileno(STDERR) or croak("Can't dup STDERR: $!");
 
