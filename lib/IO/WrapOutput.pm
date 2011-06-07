@@ -14,24 +14,24 @@ our %EXPORT_TAGS = (ALL => [@EXPORT]);
 my ($orig_stderr, $orig_stdout);
 
 sub wrap_output {
-    open $orig_stdout, '>&', *STDOUT or croak("Can't dup STDOUT: $!");
-    open $orig_stderr, '>&', *STDERR or croak("Can't dup STDERR: $!");
+    open $orig_stdout, '>&'.fileno(STDOUT) or croak("Can't dup STDOUT: $!");
+    open $orig_stderr, '>&'.fileno(STDERR) or croak("Can't dup STDERR: $!");
 
     my ($read_stdout, $write_stdout) = (gensym(), gensym());
     pipe $read_stdout, $write_stdout;
-    open STDOUT, '>&', $write_stdout or croak("Can't pipe STDOUT: $!");
+    open STDOUT, '>&'.fileno($write_stdout) or croak("Can't pipe STDOUT: $!");
 
     my ($read_stderr, $write_stderr) = (gensym(), gensym());
     pipe $read_stderr, $write_stderr;
-    open STDERR, '>&', $write_stderr or croak("Can't pipe STDERR: $!");
+    open STDERR, '>&'.fileno($write_stderr) or croak("Can't pipe STDERR: $!");
     STDERR->autoflush(1);
 
     return $read_stdout, $read_stderr;
 }
 
 sub unwrap_output {
-    open STDOUT, '>&', $orig_stdout or croak("Can't dup STDOUT: $!");
-    open STDERR, '>&', $orig_stderr or croak("Can't dup STDERR: $!");
+    open STDOUT, '>&'.fileno($orig_stdout) or croak("Can't dup STDOUT: $!");
+    open STDERR, '>&'.fileno($orig_stderr) or croak("Can't dup STDERR: $!");
     STDERR->autoflush(1);
     return;
 }
