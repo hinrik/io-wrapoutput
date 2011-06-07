@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.05  Tue Jun 7 00:11:20 GMT 2011
     - Try to work around a potential 3-arg open() issue on Perl 5.6
 
 0.04  Sun Jun 5 22:28:05 GMT 2011
