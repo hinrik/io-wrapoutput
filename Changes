@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.06  Thu Jun 9 13:14:20 GMT 2011
     - Skip tests on Win32 for now, due to a newline/pipe issue (I think)
 
 0.05  Tue Jun 7 00:11:20 GMT 2011
