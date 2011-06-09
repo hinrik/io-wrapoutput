@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - Skip tests on Win32 for now, due to a newline/pipe issue (I think)
 
 0.05  Tue Jun 7 00:11:20 GMT 2011
     - Try to work around a potential 3-arg open() issue on Perl 5.6

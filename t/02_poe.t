@@ -5,13 +5,20 @@ use warnings FATAL => 'all';
 use Test::More;
 
 BEGIN {
-    eval q<
-        use POE;
-        use Term::Cap 1.10;
-        use Term::ReadKey 2.21;
-    >;
-    plan skip_all => 'POE, Term::Cap, and Term::ReadKey required' if $@;
+    if ($^O eq 'Win32') {
+        plan skip_all => "Win32 can't run POE::Wheel::ReadLine";
+    }
+    else {
+        eval q<
+            use POE;
+            use Term::Cap 1.10;
+            use Term::ReadKey 2.21;
+        >;
+        plan skip_all => 'POE, Term::Cap, and Term::ReadKey required' if $@;
+    }
 }
+
+plan tests => 4;
 
 use IO::WrapOutput;
 use POE;
@@ -19,8 +26,6 @@ use POE::Wheel::ReadLine;
 use POE::Wheel::Run;
 use POE::Wheel::ReadWrite;
 use Symbol 'gensym';
-
-plan tests => 4;
 
 POE::Session->create(
     package_states => [
