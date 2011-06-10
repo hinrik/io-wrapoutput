@@ -2,6 +2,7 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
     - I wrote 'Win32' instead of 'MSWin32', so tests weren't skipped. Doh.
+    - Add some diagnostics to the POE test to troubleshoot a CPAN tester
 
 0.06  Thu Jun 9 13:14:20 GMT 2011
     - Skip tests on Win32 for now, due to a newline/pipe issue (I think)

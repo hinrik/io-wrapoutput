@@ -47,6 +47,7 @@ $poe_kernel->run;
 
 sub _start {
     my ($kernel, $heap) = @_[KERNEL, HEAP];
+    diag('Testing CODE before wrapping output');
     $kernel->yield('run_child', sub { sleep 1; print "foo\n" });
 }
 
@@ -79,14 +80,17 @@ sub got_child_signal {
     $heap->{children_done}++;
 
     if ($heap->{children_done} == 1) {
+        diag('Testing program before wrapping output');
         $kernel->yield('run_child', [$^X, '-e', 'sleep 1; print "foo\n"']);
     }
     elsif ($heap->{children_done} == 2) {
         $kernel->yield('setup_readline');
+        diag('Testing CODE after wrapping output');
         $kernel->yield('run_child', sub { sleep 1; print "foo\n" });
     }
     elsif ($heap->{children_done} == 3) {
         $kernel->yield('setup_readline');
+        diag('Testing program after wrapping output');
         $kernel->yield('run_child', [$^X, '-e', 'sleep 1; print "foo\n"']);
     }
     elsif ($heap->{children_done} == 4) {
