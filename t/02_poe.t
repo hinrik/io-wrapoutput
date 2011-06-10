@@ -5,7 +5,7 @@ use warnings FATAL => 'all';
 use Test::More;
 
 BEGIN {
-    if ($^O eq 'Win32') {
+    if ($^O eq 'MSWin32') {
         plan skip_all => "Win32 can't run POE::Wheel::ReadLine";
     }
     else {

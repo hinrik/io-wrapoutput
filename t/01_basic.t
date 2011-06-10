@@ -3,7 +3,7 @@ use warnings FATAL => 'all';
 use Test::More;
 
 BEGIN {
-    if ($^O eq 'Win32') {
+    if ($^O eq 'MSWin32') {
         plan skip_all => 'Fails due to a newline/pipe issue I think';
     }
     else {
